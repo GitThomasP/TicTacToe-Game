@@ -62,7 +62,7 @@ function deriveWinner(gameBoard, players) {
   return winner;
 }
 function App() {
-  const [players, setPlayers]= useState(PLAYERS);
+  const [players, setPlayers] = useState(PLAYERS);
   const [gameTurns, setGameTurns] = useState([]);
   //const [activePlayer, setActivePlayer] = useState('X');
   const activePlayer = deriveActivePlayer(gameTurns);
@@ -105,7 +105,7 @@ function handleBoardChange(rowIndex, colIndex) {
     setPlayers((prevPlayers) => {
       return {
         ...prevPlayers,
-        [symbol]: newName
+        [symbol]: newName,
       };
     });
   }
@@ -128,7 +128,9 @@ function handleBoardChange(rowIndex, colIndex) {
             onNameChange={handlePlayerNameChange}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
+        {(winner || hasDraw) && (
+          <GameOver winner={winner} onRestart={handleRestart} />
+        )}
         <GameBoard onSelectSquare={handleTurnChange} board={gameBoard} />
       </div>
       <Logs turns={gameTurns} />
